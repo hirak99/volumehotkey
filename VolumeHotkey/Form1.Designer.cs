@@ -77,7 +77,9 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox1.Size = new System.Drawing.Size(351, 136);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
+            this.textBox1.Text = "Volume Hotkeys Version 1.10\r\n\r\nCtrl+Alt+0 - Mute/Unmute\r\nCtrl+Alt+Up - Volume Up\r" +
+                "\nCtrl+Alt+Down - Volume Down\r\n\r\nCopyright (C) Arnab Bose, 2009\r\nEmail: hirak99@g" +
+                "mail.com";
             // 
             // button1
             // 

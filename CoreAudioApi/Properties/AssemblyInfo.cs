@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("VolumeHotkey")]
-[assembly: AssemblyDescription("Volume hotkeys for games")]
+[assembly: AssemblyTitle("CoreAudioApi")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Arnab's Factory")]
-[assembly: AssemblyProduct("VolumeHotkey")]
-[assembly: AssemblyCopyright("Copyright ©  Arnab Bose, 2009")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("CoreAudioApi")]
+[assembly: AssemblyCopyright("Copyright ©2007-2010 Ray Molenkamp")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ef914093-f4de-461e-9ea5-b3839a5ad108")]
+[assembly: Guid("07999b05-adc1-4c8c-89e2-5d1f2a710e54")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,8 +29,7 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
+// You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
