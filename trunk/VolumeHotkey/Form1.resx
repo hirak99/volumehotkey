@@ -2468,20 +2468,9 @@
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>124, 17</value>
   </metadata>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>Volume Hotkeys Version 1.00
-
-Ctrl+Alt+0 - Mute/Unmute
-Ctrl+Alt+Up - Volume Up
-Ctrl+Alt+Down - Volume Down
-
-Copyright (C) Arnab Bose, 2009
-Page: http://hirak99.googlepages.com/volumehotkeys
-Email: </value>
-  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        R0lGODlhSgAVAPcAAP+sLf7iq/7gpf7ksf7en/+6Tf+vM7+LNv+xOu7bskBedhA+a/+0QN+aLo9/WHBu
+        R0lGODlhSgAVAIcAAP+sLf7iq/7gpf7ksf7en/+6Tf+vM7+LNv+xOu7bskBedhA+a/+0QN+aLo9/WHBu
         WxA+aoCQl0BfeXB+f2BhUc+TMn+Jg7+YU76zkZ+HVp6jmX+Nj97Qre+iKo6Xk56gke+yT/63R3+LiTBU
         dO7Tm1BdXs4HAkBfd+7ZrH+Khs+VON7MomB0fkBgeq6ojf7HbGBze765o87Bnp6hlf/s0M7Do/7Rhb62
         mjBKWxA7YjBUczBUcv64SmB2gp9+Qs7EqP/89jBTcY6Uif+lNEBedN+dNIBwSa6wov/NgtEQBY6Vjb+O
@@ -2494,18 +2483,19 @@ Email: </value>
         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
-        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
+        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
+        OOesM0MnBQQAOw==
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

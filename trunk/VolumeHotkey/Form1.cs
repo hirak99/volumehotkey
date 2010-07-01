@@ -8,27 +8,50 @@ using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using WaveLib.AudioMixer;
+using CoreAudioApi;
 
 /**** With lots of help from:
  * http://www.arstdesign.com/articles/popupkiller.html
  * http://www.codeguru.com/csharp/csharp/cs_graphics/sound/print.php/c10931
  * 
- * Does not seem to work with games! May be get async key will work along with a timer.s
+ * Does work with games!
  * 
  ****/
 
 namespace VolumeHotkey {
     public partial class Form1 : Form {
-        private Mixers mixers = new Mixers();
+        bool useMixers = true;  // Otherwise use Windows 7 based mechanism - CoreAudioApi
+
+        private Mixers mixers;
         private MixerLine line;
         private bool AllowClose = false;
 
+        MMDevice defaultDevice;
+
         public Form1() {
             InitializeComponent();
-            line = mixers.Playback.Lines.
-               GetMixerFirstLineByComponentType(
-               MIXERLINE_COMPONENTTYPE.DST_SPEAKERS);
-            line.Channel = Channel.Uniform;
+            try {
+                // Windows XP
+                mixers = new Mixers();
+                line = mixers.Playback.Lines.
+                   GetMixerFirstLineByComponentType(
+                   MIXERLINE_COMPONENTTYPE.DST_SPEAKERS);
+                line.Channel = Channel.Uniform;
+                useMixers = true;
+            } catch (Exception) {
+                // Windows 7
+                useMixers = false;
+            }
+            if (useMixers == false) {
+                // Try to load for Windows 7
+                try {
+                    MMDeviceEnumerator devEnum = new MMDeviceEnumerator();
+                    defaultDevice = devEnum.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia);
+                } catch (Exception) {
+                    // Could not load for Windows 7 either
+                    toolStripExit.PerformClick();
+                }
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
@@ -36,22 +59,24 @@ namespace VolumeHotkey {
             if (e.CloseReason==CloseReason.UserClosing && !AllowClose) { e.Cancel = true; Hide();  }
         }
         
-        public int GetVolume() {
-            return line.Volume;
+        public float GetVolume() {
+            return (useMixers ? (float)line.Volume/0xffff : defaultDevice.AudioEndpointVolume.Channels[0].VolumeLevelScalar);
         }
 
-        public void SetVolume(int volume) {
-            if (volume > 0xffff) volume = 0xffff;
+        public void SetVolume(float volume) {
+            if (volume > 1) volume = 1;
             else if (volume < 0) volume = 0;
-            line.Volume = volume;
+            if (useMixers) line.Volume = (int)(volume * 0xffff + 0.5);
+            else defaultDevice.AudioEndpointVolume.Channels[0].VolumeLevelScalar = volume;
         }
 
         public bool IsMute() {
-            return line.Mute;
+            return (useMixers ? line.Mute : defaultDevice.AudioEndpointVolume.Mute);
         }
 
         public void SetMute(bool mute) {
-            line.Mute = mute;
+            if (useMixers) line.Mute = mute;
+            else defaultDevice.AudioEndpointVolume.Mute = mute;
         }
 
         [DllImport("User32.dll")]
@@ -77,8 +102,8 @@ namespace VolumeHotkey {
             if (WasActive(Keys.ControlKey) && (WasActive(Keys.LMenu) || WasActive(Keys.RMenu))) {
                 timer1.Interval = 100;
                 if (WasActive(Keys.D0)) SetMute(!IsMute());
-                if (WasActive(Keys.Up)) SetVolume(GetVolume() + 0xfff);
-                if (WasActive(Keys.Down)) SetVolume(GetVolume() - 0xfff);
+                if (WasActive(Keys.Up)) SetVolume((float)(GetVolume() + 1.0f/16));
+                if (WasActive(Keys.Down)) SetVolume((float)(GetVolume() - 1.0f/16));
             }
             else timer1.Interval = 1000;
         }

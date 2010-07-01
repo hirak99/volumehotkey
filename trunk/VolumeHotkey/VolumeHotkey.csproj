@@ -82,6 +82,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CoreAudioApi\CoreAudioApi.csproj">
+      <Project>{9F1076AA-63DF-4128-9C10-FD65E425C783}</Project>
+      <Name>CoreAudioApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaveLibMixer\WaveLibMixer.csproj">
       <Project>{6F3FA628-01C6-48AF-9D1A-9BB1EAF8D259}</Project>
       <Name>WaveLibMixer</Name>
