@@ -67,7 +67,12 @@ namespace VolumeHotkey {
             if (volume > 1) volume = 1;
             else if (volume < 0) volume = 0;
             if (useMixers) line.Volume = (int)(volume * 0xffff + 0.5);
-            else defaultDevice.AudioEndpointVolume.Channels[0].VolumeLevelScalar = volume;
+            else 
+            /*{
+                for (int i=0; i<defaultDevice.AudioEndpointVolume.Channels.Count; ++i)
+                    defaultDevice.AudioEndpointVolume.Channels[i].VolumeLevelScalar = volume;
+            }*/
+            defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar = volume;
         }
 
         public bool IsMute() {
