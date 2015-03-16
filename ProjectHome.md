@@ -1,0 +1,1 @@
+Windows software to allow user to control volume with global shortcuts. Unlike many other programs already available which implement similar feature, this one was designed to work from within full screen games.
